@@ -105,6 +105,25 @@ const userController = {
   }
 },
 
+  // delete new friend
+  async removeFriend(req, res) {
+  let { params } = req;
+
+  const friendData = await User.findOneAndUpdate(
+    { _id: params.userId },
+    { $pull: { friends: params.friendId } },
+    { runValidators: true, new: true }
+  )
+
+  if (!friendData) {
+    return res.status(400).json({ message: "No friend ID found" });
+  }
+
+  res.json({ message: "Friend was deleted" });
+
+
+}
+
   }
 
 module.exports = userController;

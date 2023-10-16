@@ -32,6 +32,25 @@ const thoughtController = {
             }
         },
 
+            // add thought
+    async createThought({ body }, res) {
+        try {
+            const thoughtData = await Thought.create(body);
+            const userData = await User.findOneAndUpdate(
+                { _id: body.userId },
+                { $push: { thoughts: thoughtData._id } },
+                { new: true }
+            );
+            if (!userData) {
+                res.status(404).json({ message: "No user found with this id" });
+                return;
+            }
+            res.json(userData);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+
 
 
 

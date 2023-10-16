@@ -69,6 +69,23 @@ const thoughtController = {
             };
         },
 
+            // remove thought
+    async removeThought({ params }, res) {
+        try {
+            const thoughtData = await Thought.findOneAndDelete({ _id: params.id });
+            if (!thoughtData) {
+                res.status(400).json({ message: "No thought ID found" });
+                return;
+            }
+            await User.findOneAndUpdate(
+                { username: thoughtData.username },
+                { $pull: { thoughts: params.id } }
+            );
+            res.json({ message: "Thought has been deleted" });
+        } catch (err) {
+            res.status(400).json(err);
+        }
+    },
 
 
 };

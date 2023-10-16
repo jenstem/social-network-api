@@ -59,11 +59,11 @@ This app is meant to help the user quickly and easily add/update/remove users, t
 ## Screenshots:
 ##
 
-![](https://github.com/jenstem/tech-blog/blob/main/public/assets/login.png) <br>
+![](https://github.com/jenstem/social-network-api/blob/main/assets/get-request.png) <br>
 *This is a screenshot of a GET request*
 ##
 
-![](https://github.com/jenstem/tech-blog/blob/main/public/assets/blogpost.png) <br>
+![](https://github.com/jenstem/social-network-api/blob/main/assets/post-request.png) <br>
 *This is a screenshot of a POST request*
 ##
 

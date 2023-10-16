@@ -54,6 +54,22 @@ const userController = {
     }
   },
 
+    // remove user
+  async removeUser({ params }, res) {
+  try {
+    const userData = await User.findOneAndDelete(
+      { _id: params.userId });
+
+    if (!userData) {
+      res.status(404).json({ message: "No user ID found" });
+      return;
+    }
+
+    res.json({ message: "User deleted" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+},
 
   }
 

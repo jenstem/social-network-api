@@ -14,6 +14,23 @@ const thoughtController = {
         }
     },
 
+        // get single thought
+        async getSingleThought({ params }, res) {
+            try {
+                const thoughtData = await Thought.findOne({ _id: params.id })
+                    .populate({ path: "reactions", select: "-__v" })
+                    .select("-__v");
+
+                if (!thoughtData) {
+                    res.status(404).json({ message: "No thought ID found" });
+                    return;
+                }
+
+                res.json(thoughtData);
+            } catch (err) {
+                res.status(400).json(err);
+            }
+        },
 
 
 

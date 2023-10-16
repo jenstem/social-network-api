@@ -51,6 +51,23 @@ const thoughtController = {
         }
     },
 
+        // update thought
+        async updateThought({ params, body }, res) {
+            try {
+                const thoughtData = await Thought.findOneAndUpdate(
+                    { _id: params.id },
+                    body,
+                    { new: true }
+                );
+                if (!thoughtData) {
+                    res.status(400).json({ message: "Thought ID doesn't exist" });
+                    return;
+                }
+                res.json(thoughtData);
+            } catch (err) {
+                res.status(400).json(err);
+            };
+        },
 
 
 

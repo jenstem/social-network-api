@@ -87,6 +87,26 @@ const thoughtController = {
         }
     },
 
+        // add reaction
+        async addReaction({ params, body }, res) {
+            try {
+                const reactionData = await Thought.findOneAndUpdate(
+                    { _id: params.thoughtId },
+                    { $push: { reactions: body } },
+                    { new: true }
+                );
+
+                if (!reactionData) {
+                    res.status(400).json({ message: "Reaction created, but no user found" });
+                    return;
+                }
+
+                res.json(reactionData);
+            } catch (err) {
+                res.status(400).json(err);
+            }
+        },
+
 
 };
 

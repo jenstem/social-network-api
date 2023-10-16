@@ -38,6 +38,21 @@ const userController = {
     }
   },
 
+    //update user by id
+  async updateUser(req, res) {
+    let { params } = req;
+    try {
+      const userData = await User.findOneAndUpdate(
+        { _id: params.userId },
+        { $set: req.body },
+        { runValidators: true, new: true }
+      );
+
+      return res.json(userData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
 
   }

@@ -14,7 +14,19 @@ const userController = {
     }
   },
 
+  // get single user by id
+  async getSingleUser(req, res) {
+    let { params } = req;
+    try {
+      const userData = await User.findOne({ _id: params.userId })
+        .select("-__v")
+        .populate('thoughts', 'friends');
 
+      return res.json(userData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
 
 

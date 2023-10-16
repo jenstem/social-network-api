@@ -43,7 +43,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 <a id='installation'></a>
 ## Installation
 Please use command lines "npm i" and "npm start".  Once the server is running, you can access the api at localhost.\
-Watch the walk through video on, [YouTube](https://youtu.be/5fiwiHfIDHg)
+Watch the walk through video on [YouTube](https://youtu.be/5fiwiHfIDHg).
 ##
 
 <a id='usage'></a>

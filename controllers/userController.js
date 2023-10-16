@@ -91,6 +91,20 @@ const userController = {
     res.status(500).json({ message: "No user found" });
   }
 
+    // update friend
+  try {
+    const friendEl = await User.findOneAndUpdate(
+      { _id: params.userId },
+      { $addToSet: { friends: params.friendId } },
+      { runValidators: true, new: true }
+    )
+
+    res.json(friendEl);
+  } catch (err) {
+    res.status(400).json({ message: "No user found" });
+  }
+},
+
   }
 
 module.exports = userController;

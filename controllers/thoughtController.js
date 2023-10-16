@@ -107,6 +107,24 @@ const thoughtController = {
             }
         },
 
+            // remove reaction
+    async removeReaction({ params, body }, res) {
+        try {
+            const thoughtData = await Thought.findOneAndUpdate(
+                { _id: params.thoughtId },
+                { $pull: { reactions: { reactionId: body.reactionId } } },
+                { new: true, runValidators: true }
+            );
+            if (!thoughtData) {
+                res.status(400).json({ message: "No thought ID found" });
+                return;
+            }
+
+            res.json({ message: "Reaction has been removed" });
+        } catch (err) {
+            res.status(400).json(err);
+        }
+    }
 
 };
 
